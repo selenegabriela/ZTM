@@ -1,7 +1,7 @@
 // Given 2 arrays, create a function that let's a user know (true/false) wheter these two arrays contain any common items.
-
-const arr1 =["a", "b","c","d"];
-const arr2 =["e","f","y","h"];
+// For saving space
+const arr1 =["a", "r","c","d"];
+const arr2 =["e","f","c","h"];
 
 const commonNumber = (arr1, arr2) => {
     for(let item in arr1){
@@ -18,15 +18,18 @@ const commonNumber = (arr1, arr2) => {
 //console.log(commonNumber(arr1, arr2));
 
 // O(n*m)
+// Space complexity: (O(1))
 
-// BETTER SOLUTION
+// BETTER SOLUTION for saving time
 
 const commonNumberBest = (arr1, arr2) => {
     const objArr = {}
     arr1.forEach((item) => {
-        objArr[item] = item
+        if(!objArr[item]){
+            objArr[item] = true
+        }
     })
-    console.log(objArr);
+
     for(let item of arr2){
         if(objArr[item]){
             return true
@@ -35,6 +38,16 @@ const commonNumberBest = (arr1, arr2) => {
     return false;
 }
 
-console.log(commonNumberBest(arr1, arr2));
+
+//console.log(commonNumberBest(arr1, arr2));
 
 // O(n+m)
+// O(n) - space complexity
+
+// For readability 
+
+const commonNumberBestRead = (arr1, arr2) => {
+    return arr1.some(item => arr2.includes(item))
+}
+
+console.log(commonNumberBestRead(arr1, arr2));
