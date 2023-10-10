@@ -20,12 +20,33 @@ class MyArray {
         this.length--;
         return item;
     }
+// length 3
+// 0 1 2
+// index 1
+
+    shiftItems(index){
+        for(let i = index; i < this.length-1; i++){   
+            this.data[i] = this.data[i+1]
+        }
+        delete this.data[this.length-1]
+    }
+
+    delete(index){
+        const item = this.data[index]
+        if(this.length-1 === index){
+            this.pop()
+        } else {
+            this.shiftItems(index);
+        }
+        return item;
+    }
 }
 
 const arr1 = new MyArray();
 
 arr1.push('hola')
 arr1.push('hehe')
-console.log(arr1.get(0))
-console.log(arr1.pop())
+arr1.push('maza')
+
+console.log(arr1.delete(0))
 console.log(arr1)
