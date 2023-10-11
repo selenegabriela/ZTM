@@ -55,6 +55,8 @@ const arr1 = new MyArray();
 // Create a function that reverses a sting: 'Hi my name is Selene', should be: eneleS si eman ym iH'
 
 const reverseString = (str) => {
+
+    if (!str || str.length < 2 || typeof str !=='string') return "Hmm, that's not correct"
     let reversStr = ''
     for(let i = str.length-1; i >= 0; i--){
         reversStr += str[i]; 
