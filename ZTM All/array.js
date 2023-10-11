@@ -77,5 +77,10 @@ const reverseRecur = (str, strReverse) => {
 
 //console.log(reverseString('Hi my name is Selene')); // O(n)
 console.log(reverseRecur('Hi my name is Selene', '')); // O(n)
+let sel = 'yo soy Selene'
 
+const reverse3 = str => str.split('').reverse().join('') // O(n)
+let myName = 'Panqué'
+console.log(reverse3('Mazapán'));
+console.log([...myName]);
 
