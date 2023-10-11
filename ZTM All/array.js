@@ -44,9 +44,36 @@ class MyArray {
 
 const arr1 = new MyArray();
 
-arr1.push('hola')
-arr1.push('hehe')
-arr1.push('maza')
+// arr1.push('hola')
+// arr1.push('hehe')
+// arr1.push('maza')
 
-console.log(arr1.delete(0))
-console.log(arr1)
+// console.log(arr1.delete(0))
+// console.log(arr1)
+
+
+// Create a function that reverses a sting: 'Hi my name is Selene', should be: eneleS si eman ym iH'
+
+const reverseString = (str) => {
+    let reversStr = ''
+    for(let i = str.length-1; i >= 0; i--){
+        reversStr += str[i]; 
+    }
+    return reversStr;
+}
+
+const reverseRecur = (str, strReverse) => {
+    // Hello 
+    // olleh
+    if(str==="") return strReverse
+
+    let length = str.length-1
+    strReverse = strReverse + str[length]
+    str = str.slice(0,-1)
+    return reverseRecur(str, strReverse)
+}
+
+//console.log(reverseString('Hi my name is Selene')); // O(n)
+console.log(reverseRecur('Hi my name is Selene', '')); // O(n)
+
+
