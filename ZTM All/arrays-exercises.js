@@ -83,7 +83,7 @@ const minCostClimbingStairs = (cost) => {
     return dp[n];
 };
 
-console.log(minCostClimbingStairs([10,15,20]));
+//console.log(minCostClimbingStairs([10,15,20]));
 
 // moving zeroes to the end
 
@@ -145,3 +145,72 @@ var moveZeroesOn = function(nums) { // O(n)
 // 
 
 //console.log(moveZeroesOnWrong([0,1,0,3,12])); 
+
+const containDuplicates = (nums) => { // O(n)
+    const duplicate = new Set()
+
+    for(let number of nums){
+        if(duplicate.has(number)){
+            return true;
+        }
+        duplicate.add(number)
+    }
+
+    return false;
+}
+
+const containDuplicates2 = (nums) => { // O(n)
+    const duplicate = new Set(nums)
+    return duplicate.size!==nums.size
+}
+
+const rotate = (nums, k) => {
+    const numbersEnd = []
+    const numbersStart = []
+
+
+    for(let i=0; i < nums.length; i++){
+        if(i<=k){
+            numbersEnd.push(nums[i])
+        } else {
+            numbersStart.push(nums[i])
+        }
+    }
+
+    return [...numbersStart, ...numbersEnd];
+}
+
+
+const rotate2 = (nums, k) => {
+    const n = nums.length;
+    k %= n;
+    if (k === 0 || n === 0 || n === k) {
+        return;
+    }
+    
+    //[3,2,1,4,1,6,7]
+    let count = 0; // 1
+    let start = 0; //
+    let current = start; // 2 -> 4
+    let prev = nums[start]; // 1
+    // n=7
+    //k=2
+    //temp = 3 -> 5
+    
+    while (count < n) {
+        current = (current + k) % n;
+        const temp = nums[current];
+        nums[current] = prev;
+        prev = temp;
+        count++;
+    
+        if (current === start) {
+        start++;
+        current = start;
+        prev = nums[start];
+        }
+    }
+    
+}
+
+console.log(rotate2([1,2,3,4,5,6,7],2)); // []
