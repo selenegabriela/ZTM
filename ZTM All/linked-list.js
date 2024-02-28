@@ -120,31 +120,28 @@ class DoubleLinkedList {
             next: null,
             prev: null
         }
+            prev: null
+        }
         this.tail = this.head;
         this.length = 1;
     }
 
-    print(){
-        const arr = []
-        let current = this.head;
-
-        while(current){
-            arr.push(current.value)
-            current = current.next;
-        }
-        return arr;
-    }
-
     append(value){
         const newNode = new DoubleNode(value)
+        const newNode = new DoubleNode(value)
         newNode.prev = this.tail;
+        this.tail.next = newNode
         this.tail.next = newNode
         this.tail = newNode;
         this.length++;
         return this;
+        return this;
     }
 
     prepend(value){
+        const newNode = new DoubleNode(value)
+        newNode.next = this.head;
+        this.head.prev = newNode;
         const newNode = new DoubleNode(value)
         newNode.next = this.head;
         this.head.prev = newNode;
