@@ -55,4 +55,30 @@ var romanToInt = function(s) {
     return arabicNumber;
 };
 
-console.log(romanToInt("LVIII"));
+const romanToInt2 = (str) => {
+    const romanNumbers = {
+        'I': 1,
+        'V': 5,
+        'X': 10,
+        'L': 50,
+        'C': 100,
+        'D': 500,
+        'M': 1000,
+    }
+
+    let arabicNumber = 0
+
+    for(let i = str.length - 1; i >=0; i--){
+        const currentValue = romanNumbers[str[i]];
+
+        if(i < str.length - 1 && currentValue < romanNumbers[str[i+1]]){
+            arabicNumber-=romanNumbers[str[i]]
+        } else {
+            arabicNumber+=romanNumbers[str[i]]
+        }
+    }
+
+    return arabicNumber
+}
+
+console.log(romanToInt2("IX"));
