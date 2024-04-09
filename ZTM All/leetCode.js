@@ -82,3 +82,58 @@ const romanToInt2 = (str) => {
 }
 
 console.log(romanToInt2("IX"));
+
+var longestCommonPrefix1 = function(strs) {
+    let finalPrefix = strs[0]
+    for(let i = 1; i < strs.length; i++){
+        let j = 0;
+        let prefix = ''
+        
+       while(strs[i-1][j] && strs[i][j] && strs[i-1][j] === strs[i][j]){
+        let first = strs[i-1][j]
+        let second = strs[i][j]
+        if(first === second){
+            prefix+=first
+        }
+        j++
+       }
+        if (prefix.length < finalPrefix.length){
+            finalPrefix = prefix
+        }
+    }
+    return finalPrefix
+};
+
+var longestCommonPrefix = function(strs) {
+
+    let pref = strs[0];
+    let prevLength = strs[0].length;
+
+    for(let i = 1; i < strs.length; i++){
+        let current = strs[i]
+        while(pref.substring(0,prevLength) !== current.substring(0,prevLength)){
+            prevLength--;
+        }
+
+        pref=current.substring(0,prevLength)
+    }
+
+    return pref;
+};
+
+var longestCommonPrefix2 = function(strs) {
+
+    strs.sort()
+    let prefix = ""
+    for(let i=0; i < strs[0].length; i++){
+        if(strs[0][i] === strs[strs.length-1][i]) {
+            prefix += strs[0][i] 
+        } else {
+            break;
+        }
+    }
+    return prefix;
+};
+
+console.log('=====================================')
+console.log(longestCommonPrefix2(["flow","flower","flew"]))
