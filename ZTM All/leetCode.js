@@ -137,3 +137,72 @@ var longestCommonPrefix2 = function(strs) {
 
 console.log('=====================================')
 console.log(longestCommonPrefix2(["flow","flower","flew"]))
+
+var isValid = function(s) {
+    const openSymbols = {
+        '(': '()',
+        '[': '[]',
+        '{': '{}',
+    }
+    const clossedSymbols = {
+        ']': '[]',
+        '}': '{}',
+        ')': '()',
+    }
+    const arr = []
+    let valid = true;
+
+    for(let i = 0; i < s.length; i++){
+
+        if(openSymbols[s[i]] && s[i]===openSymbols[s[i]][0]){
+            arr.push(openSymbols[s[i]][1])
+        } else if(clossedSymbols[s[i]] && s[i]===clossedSymbols[s[i]][1]){
+            if (arr.pop() !== s[i]) valid = false;
+        }
+    }
+
+    if(arr.length) valid = false;
+
+    return valid;
+};
+
+const isValid2 = (s) => {
+    const stack = []
+
+    for(let i = 0; i < s.length; i++){
+        const c = s[i]
+        switch(c){
+            case '(': stack.push(')'); break;
+            case '[': stack.push(']'); break;
+            case '{': stack.push('}'); break;
+            default: 
+                if(c !== stack.pop()) return false;
+        }
+    }
+
+    return stack.length === 0;
+}
+
+const isValid3 = (s) => {
+    const stack = []
+    for(let c of s){
+
+        if(c==='(' || c==='[' || c==='{'){
+            stack.push(c)
+        } else {
+            if(stack.length===0){
+                return false
+            } else {
+                if(c===')' && '(' !== stack.pop() || c===']' && '[' !== stack.pop() || c==='}' && '{' !== stack.pop()){
+                    return false;
+                }
+            }
+        }
+    }
+
+    return stack.length===0
+}
+
+console.log('=====================================')
+console.log(isValid3('({})'));
+
