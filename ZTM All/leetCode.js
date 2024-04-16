@@ -206,3 +206,96 @@ const isValid3 = (s) => {
 console.log('=====================================')
 console.log(isValid3('({})'));
 
+class ListNode {
+    constructor(val, next){
+        this.val = (val===undefined ? 0 : val)
+        this.next = (next===undefined ? null : next)
+    }
+}
+
+var mergeTwoLists = function(list1, list2) {
+    const newNode = new ListNode(0,null)
+    let current = newNode
+    let flag = true
+
+    while((list1 || list2) && flag){
+        if(list1 && list2){
+            if(list1.val <= list2.val){
+                current.next = new ListNode(list1.val, null)
+                current = current.next
+                list1 = list1.next;
+            } else {
+                current.next = new ListNode(list2.val, null)
+                current = current.next
+                list2 = list2.next;
+            }
+        } else if(list1 && !list2){
+            current.next = list1
+            flag = false
+        } else if(!list1 && list2){
+            current.next = list2
+            flag = false
+        }
+    }
+    return newNode.next;
+
+};
+
+
+var mergeTwoLists2 = function(list1, list2) {
+
+    const newNode = new ListNode(0,null);
+    let current = newNode;
+
+    while(list1 && list2){
+        if(list1.val < list2.val){
+            current.next = list1
+            list1 = list1.next
+        } else {
+            current.next = list2
+            list2 = list2.next
+        }
+        current = current.next;
+    }
+
+    current.next = list1 || list2;
+
+    return newNode.next
+
+};
+
+var mergeTwoLists3 = function(list1, list2) {
+
+    if(!list1 || !list2) return list1 || list2
+
+    let head
+
+    if(list1.val < list2.val){
+        head = list1
+        head.next = mergeTwoLists3(list1.next, list2)
+    } else {
+        head = list2
+        head.next = mergeTwoLists3(list1, list2.next)
+    }
+
+    return head;
+
+};
+
+const list1 = {
+    val: -9,
+    next: {
+        val: 3,
+        next: null
+    }
+}
+
+const list2 = {
+    val: 5,
+    next: {
+        val: 7,
+        next: null
+    }
+}
+
+console.log(mergeTwoLists3(list1,list2))
