@@ -299,3 +299,54 @@ const list2 = {
 }
 
 console.log(mergeTwoLists3(list1,list2))
+
+console.log("=================================");
+
+var removeDuplicates = function(nums) {
+    if (nums.length === 1) return 1;
+    let i = 1
+    let j = 0;
+    if(nums[0] !== nums[1]){
+        j++
+    }
+
+    for(;i<nums.length;i++){
+        if(nums[j-1] !== nums[i]){
+            nums[j++] = nums[i]
+        }
+    }
+
+    return j;
+};
+
+
+var removeDuplicates2 = function(nums) {
+    const map = new Map()
+    let k = nums.length;
+
+    for(let i = 0; i<nums.length; i++){
+        if(!map.get(nums[i])) {
+            map.set(nums[i],true)
+        } else {
+            nums[i] = "_"
+            k--
+        }
+    }
+    nums.sort((a,b) => Number.isFinite(b) - Number.isFinite(a));
+    console.log(nums)
+    return k;
+};
+
+var removeDuplicates3 = function(nums) {
+    let index = 0;
+    while(index < nums.length){
+        if(nums[index+1]===nums[index]){
+            nums.splice(index,1)
+        } else {
+            index++
+        }
+    }
+    return nums.length;
+};
+
+console.log(removeDuplicates3([0,1,1,1,2,2,3,3,3,4]));
